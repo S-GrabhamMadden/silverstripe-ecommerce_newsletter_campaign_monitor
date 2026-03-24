@@ -23,8 +23,8 @@
         }
     ],
     "require": {
-        "sunnysideup/ecommerce": "*",
-        "sunnysideup/campaignmonitor": "*",
+        "sunnysideup/ecommerce": "dev-master",
+        "sunnysideup/campaignmonitor": "dev-master",
         "silverstripe/recipe-cms": "^4.0 || ^5.0"
     },
     "extra": [],
