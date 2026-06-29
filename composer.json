@@ -1,36 +1,42 @@
 {
-  "name": "sunnysideup/ecommerce_newsletter_campaign_monitor",
-  "type": "silverstripe-vendormodule",
-  "description": "add a newsletter signup to your e-commerce checkout - specifically for campaign monitor newsletter module",
-  "keywords": [
-    "Silverstripe-CMS",
-    "CMS",
-    "Silverstripe",
-    "ecommerce",
-    "e-commerce",
-    "shop",
-    "newsletter",
-    "news letter",
-    "signup to newsletter",
-    "campaign monitor"
-  ],
-  "license": "BSD-3-Clause",
-  "authors": [
-    {
-      "name": "Nicolaas Francken",
-      "email": "modules@sunnysideup.co.nz",
-      "role": "lead developer"
+    "name": "sunnysideup/ecommerce_newsletter_campaign_monitor",
+    "type": "silverstripe-vendormodule",
+    "description": "add a newsletter signup to your e-commerce checkout - specifically for campaign monitor newsletter module",
+    "keywords": [
+        "Silverstripe-CMS",
+        "CMS",
+        "Silverstripe",
+        "ecommerce",
+        "e-commerce",
+        "shop",
+        "newsletter",
+        "news letter",
+        "signup to newsletter",
+        "campaign monitor"
+    ],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Nicolaas Francken",
+            "email": "modules@sunnysideup.co.nz",
+            "role": "lead developer"
+        }
+    ],
+    "require": {
+        "sunnysideup/ecommerce": "^33.0",
+        "silverstripe/recipe-cms": "^6.0"
+    },
+    "extra": [],
+    "autoload": {
+        "psr-4": {
+            "Sunnysideup\\EcommerceNewsletterCampaignMonitor\\": "src/"
+        }
+    },
+    "yet-to-update": {
+        "sunnysideup/campaignmonitor": {
+            "section": "require",
+            "current": "^5.0-dev",
+            "reason": "no-compatible-stable-release"
+        }
     }
-  ],
-  "require": {
-    "sunnysideup/ecommerce": "5.x-dev",
-    "sunnysideup/campaignmonitor": "5.x-dev",
-    "silverstripe/recipe-cms": "^4.0 || ^5.0"
-  },
-  "extra": [],
-  "autoload": {
-    "psr-4": {
-      "Sunnysideup\\EcommerceNewsletterCampaignMonitor\\": "src/"
-    }
-  }
 }
