@@ -2,24 +2,25 @@
 
 namespace Sunnysideup\EcommerceNewsletterCampaignMonitor\Extensions;
 
+use SilverStripe\Core\Extension;
+use Sunnysideup\Ecommerce\Model\Config\EcommerceDBConfig;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\TextField;
-use SilverStripe\ORM\DataExtension;
 use Sunnysideup\CampaignMonitor\CampaignMonitorSignupPage;
 
 /**
  * Class \Sunnysideup\EcommerceNewsletterCampaignMonitor\Extensions\EcommerceNewsletterCampaignMonitorSignupDecoratorConfigFixes
  *
- * @property \Sunnysideup\Ecommerce\Model\Config\EcommerceDBConfig|\Sunnysideup\EcommerceNewsletterCampaignMonitor\Extensions\EcommerceNewsletterCampaignMonitorSignupDecoratorConfigFixes $owner
+ * @property EcommerceDBConfig|EcommerceNewsletterCampaignMonitorSignupDecoratorConfigFixes $owner
  * @property string $CampaignMonitorSignupHeader
  * @property string $CampaignMonitorSignupIntro
  * @property string $CampaignMonitorSignupLabel
  * @property int $CampaignMonitorSignupPageID
- * @method \Sunnysideup\CampaignMonitor\CampaignMonitorSignupPage CampaignMonitorSignupPage()
+ * @method CampaignMonitorSignupPage CampaignMonitorSignupPage()
  */
-class EcommerceNewsletterCampaignMonitorSignupDecoratorConfigFixes extends DataExtension
+class EcommerceNewsletterCampaignMonitorSignupDecoratorConfigFixes extends Extension
 {
     private static $db = [
         'CampaignMonitorSignupHeader' => 'Varchar(50)',
@@ -49,25 +50,17 @@ class EcommerceNewsletterCampaignMonitorSignupDecoratorConfigFixes extends DataE
                 $fields->addFieldsToTab(
                     'Root.Newsletter',
                     [
-                        new DropdownField(
-                            'CampaignMonitorSignupPageID',
-                            _t('EcommerceNewsletterCampaignMonitorSignup.SIGN_UP_TO', 'Sign-up for ...'),
-                            $options
-                        ),
-                        new TextField('CampaignMonitorSignupHeader', _t('EcommerceNewsletterCampaignMonitorSignup.HEADER', 'Header')),
-                        new TextField('CampaignMonitorSignupIntro', _t('EcommerceNewsletterCampaignMonitorSignup.INTRO', 'Intro')),
-                        new TextField('CampaignMonitorSignupLabel', _t('EcommerceNewsletterCampaignMonitorSignup.LABEL', 'Label')),
+                        DropdownField::create('CampaignMonitorSignupPageID', _t('EcommerceNewsletterCampaignMonitorSignup.SIGN_UP_TO', 'Sign-up for ...'), $options),
+                        TextField::create('CampaignMonitorSignupHeader', _t('EcommerceNewsletterCampaignMonitorSignup.HEADER', 'Header')),
+                        TextField::create('CampaignMonitorSignupIntro', _t('EcommerceNewsletterCampaignMonitorSignup.INTRO', 'Intro')),
+                        TextField::create('CampaignMonitorSignupLabel', _t('EcommerceNewsletterCampaignMonitorSignup.LABEL', 'Label')),
                     ]
                 );
             } else {
                 $fields->addFieldsToTab(
                     'Root.Newsletter',
                     [
-                        new DropdownField(
-                            'CampaignMonitorSignupPageID',
-                            _t('EcommerceNewsletterCampaignMonitorSignup.SIGN_UP_TO', 'Sign-up for ...'),
-                            $options
-                        ),
+                        DropdownField::create('CampaignMonitorSignupPageID', _t('EcommerceNewsletterCampaignMonitorSignup.SIGN_UP_TO', 'Sign-up for ...'), $options),
                     ]
                 );
                 $fields->removeFieldsFromTab('Root.Main', ['CampaignMonitorSignupHeader', 'CampaignMonitorSignupIntro', 'CampaignMonitorSignupLabel']);
@@ -76,15 +69,12 @@ class EcommerceNewsletterCampaignMonitorSignupDecoratorConfigFixes extends DataE
             $fields->addFieldsToTab(
                 'Root.Newsletter',
                 [
-                    new LiteralField(
-                        'ListExplanation',
-                        '<p class="message warning">
+                    LiteralField::create('ListExplanation', '<p class="message warning">
                         ' . _t('EcommerceNewsletterCampaignMonitorSignup.RECOMMENDATION_TO_SETUP', 'It is recommended you set up a Campaign Monitor Page with a valid list to subscribe to.') . '
-                        </p>'
-                    ),
-                    new TextField('CampaignMonitorSignupHeader', _t('EcommerceNewsletterCampaignMonitorSignup.HEADER', 'Header')),
-                    new TextField('CampaignMonitorSignupIntro', _t('EcommerceNewsletterCampaignMonitorSignup.INTRO', 'Intro')),
-                    new TextField('CampaignMonitorSignupLabel', _t('EcommerceNewsletterCampaignMonitorSignup.LABEL', 'Label')),
+                        </p>'),
+                    TextField::create('CampaignMonitorSignupHeader', _t('EcommerceNewsletterCampaignMonitorSignup.HEADER', 'Header')),
+                    TextField::create('CampaignMonitorSignupIntro', _t('EcommerceNewsletterCampaignMonitorSignup.INTRO', 'Intro')),
+                    TextField::create('CampaignMonitorSignupLabel', _t('EcommerceNewsletterCampaignMonitorSignup.LABEL', 'Label')),
                 ]
             );
             $fields->removeFieldFromTab('Root.Main', 'CampaignMonitorSignupPageID');
